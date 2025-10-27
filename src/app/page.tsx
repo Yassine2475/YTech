@@ -1,65 +1,217 @@
-import Image from "next/image";
+'use client';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="overflow-x-hidden">
+      {/* ---------- HERO / HOME ---------- */}
+      <section
+        id="home"
+        className="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-gradient-to-b from-white via-gray-50 to-gray-100"
+      >
+        <motion.h1
+          className="text-5xl md:text-6xl font-bold mb-6 text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          YTech – Webentwicklung & digitale Lösungen
+        </motion.h1>
+
+        <motion.p
+          className="text-lg text-gray-600 max-w-2xl mb-8"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+        >
+          Ich bin <strong>Yassine Fakrouche</strong>, Webentwickler aus Köln.  
+          Ich entwickle maßgeschneiderte Websites & Webapps mit modernem Tech-Stack,  
+          klarer Struktur und einem Auge fürs Design.
+        </motion.p>
+
+        <motion.div
+          className="flex gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
+          <a href="#leistungen" className="btn-primary">Leistungen ansehen</a>
+          <a href="#kontakt" className="btn-outline">Kontakt aufnehmen</a>
+        </motion.div>
+      </section>
+
+      {/* ---------- ÜBER MICH ---------- */}
+      <section
+        id="ueber"
+        className="py-24 px-6 bg-white text-center flex flex-col items-center"
+      >
+        <motion.h2
+          className="text-4xl font-bold mb-10 text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Über mich
+        </motion.h2>
+
+        <motion.p
+          className="max-w-3xl text-gray-700 text-lg leading-relaxed"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          Seit mehreren Jahren entwickle ich Websites, Landingpages und Web-Apps mit Fokus
+          auf Performance, Design und Nutzerfreundlichkeit.  
+          Ich arbeite mit Technologien wie <strong>Next.js, React, TypeScript</strong> und <strong>Tailwind CSS</strong>.  
+          Mein Ziel: Digitale Auftritte, die überzeugen – technisch wie visuell.
+        </motion.p>
+      </section>
+
+      {/* ---------- LEISTUNGEN ---------- */}
+      <section
+        id="leistungen"
+        className="py-24 px-6 bg-gray-50 flex flex-col items-center text-center"
+      >
+        <motion.h2
+          className="text-4xl font-bold mb-10 text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          Leistungen
+        </motion.h2>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl">
+          {[
+            {
+              title: 'Webdesign & Entwicklung',
+              text: 'Individuelle Websites mit modernem Tech-Stack. Optimiert für SEO, Conversion und Performance.',
+            },
+            {
+              title: 'Webapps & Dashboards',
+              text: 'Interaktive Anwendungen mit Datenanbindung, Nutzerverwaltung und responsivem UI.',
+            },
+            {
+              title: 'Technische Beratung',
+              text: 'Unterstützung bei Hosting, Deployments, Automatisierungen und digitaler Strategie.',
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className="card bg-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <h3 className="text-2xl font-semibold mb-3">{item.title}</h3>
+              <p className="text-gray-600">{item.text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------- PROJEKTE ---------- */}
+      <section
+        id="projekte"
+        className="py-24 px-6 bg-white flex flex-col items-center text-center"
+      >
+        <motion.h2
+          className="text-4xl font-bold mb-10 text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          Projekte
+        </motion.h2>
+
+        <div className="grid md:grid-cols-2 gap-10 max-w-5xl">
+          {[
+            {
+              name: 'Kfz-Gutachter Plattform',
+              desc: 'Redesign mit Next.js und Tailwind – Fokus auf Geschwindigkeit und klare User Journey.',
+            },
+            {
+              name: 'Portfolio für Designer',
+              desc: 'Modernes, minimalistisches Portfolio mit CMS-Anbindung und sanften Animationen.',
+            },
+            {
+              name: 'Business Landingpage',
+              desc: 'Conversion-optimierte Unternehmensseite mit Kontaktintegration und SEO-Optimierung.',
+            },
+            {
+              name: 'Dashboard App',
+              desc: 'Analyse-Dashboard mit React, Chart.js und Echtzeitdaten aus einer REST-API.',
+            },
+          ].map((p, i) => (
+            <motion.div
+              key={i}
+              className="card hover:scale-[1.02]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <h3 className="text-xl font-semibold mb-2">{p.name}</h3>
+              <p className="text-gray-600">{p.desc}</p>
+            </motion.div>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      {/* ---------- KONTAKT ---------- */}
+      <section
+        id="kontakt"
+        className="py-24 px-6 bg-gray-50 flex flex-col items-center text-center"
+      >
+        <motion.h2
+          className="text-4xl font-bold mb-6 text-gray-900"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          Kontakt
+        </motion.h2>
+
+        <motion.p
+          className="text-gray-600 mb-8 max-w-2xl"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          Du möchtest ein Projekt umsetzen oder einfach mal über deine Idee sprechen?  
+          Schreib mir direkt über das Formular – ich melde mich so schnell wie möglich.
+        </motion.p>
+
+        <motion.form
+          onSubmit={(e) => e.preventDefault()}
+          className="space-y-4 w-full max-w-md"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          <input
+            name="name"
+            placeholder="Name"
+            className="border border-gray-300 p-3 w-full rounded-md focus:border-black focus:outline-none"
+            required
+          />
+          <input
+            name="email"
+            placeholder="E-Mail"
+            type="email"
+            className="border border-gray-300 p-3 w-full rounded-md focus:border-black focus:outline-none"
+            required
+          />
+          <textarea
+            name="nachricht"
+            placeholder="Nachricht"
+            className="border border-gray-300 p-3 w-full rounded-md h-32 focus:border-black focus:outline-none"
+            required
+          />
+          <button
+            type="submit"
+            className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Absenden
+          </button>
+        </motion.form>
+      </section>
+    </main>
   );
 }

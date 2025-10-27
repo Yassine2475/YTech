@@ -1,26 +1,140 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* -------------------------------
+   BASIS-STILE & TYPOGRAFIE
+--------------------------------*/
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --radius: 1rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* sorgt dafür, dass Header nichts überlappt */
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    background-color: theme('colors.white');
+    color: theme('colors.gray.900');
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold tracking-tight;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply underline-offset-2 transition-colors duration-200;
+  }
+
+  section {
+    @apply scroll-mt-24; /* damit beim Scrollen der Header Platz lässt */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* -------------------------------
+   KOMPONENTEN-UTILITIES
+--------------------------------*/
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium transition;
+  }
+
+  .btn-primary {
+    @apply btn bg-black text-white hover:bg-gray-800;
+  }
+
+  .btn-outline {
+    @apply btn border border-gray-300 hover:bg-gray-50;
+  }
+
+  /* Karten / Container */
+  .card {
+    @apply rounded-2xl border p-6 shadow-sm hover:shadow-md transition;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply text-gray-700 hover:text-black font-medium transition;
+  }
+
+  .nav-active {
+    @apply text-black font-semibold;
+  }
+
+  /* Abschnitt-Hintergrundvarianten */
+  .section-light {
+    @apply bg-white;
+  }
+
+  .section-gray {
+    @apply bg-gray-50;
+  }
+
+  .section-gradient {
+    @apply bg-gradient-to-b from-white to-gray-100;
+  }
+}
+
+/* -------------------------------
+   CUSTOM SHADOWS & ANIMATION
+--------------------------------*/
+@layer utilities {
+  .shadow-soft {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .fade-in {
+    @apply opacity-0 translate-y-4 transition-all duration-700;
+  }
+
+  .fade-in.show {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); } /* etwas sanfter */
+}
+
+@keyframes softGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+  50% { box-shadow: 0 0 20px rgba(255,255,255,0.25); }
+}
+
+/* einzelne Effekte (falls du sie einzeln brauchst) */
+.animate-pulse-slow {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.animate-glow {
+  animation: softGlow 2.5s infinite ease-in-out;
+}
+
+.animate-pulse-glow {
+  animation: 
+    pulse 2.5s infinite ease-in-out,
+    softGlow 3s infinite ease-in-out;
 }
