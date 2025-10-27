@@ -1,7 +1,35 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function Home() {
+  // --- Formularzustände ---
+  const [form, setForm] = useState({ name: '', email: '', nachricht: '' });
+  const [msg, setMsg] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMsg(null);
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+      setMsg(data.message);
+    } catch (error) {
+      console.error('Kontaktformular Fehler:', error);
+      setMsg('Fehler beim Senden.');
+    }
+
+    setLoading(false);
+  };
+
   return (
     <main className="overflow-x-hidden">
       {/* ---------- HERO / HOME ---------- */}
@@ -179,7 +207,7 @@ export default function Home() {
         </motion.p>
 
         <motion.form
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
           className="space-y-4 w-full max-w-md"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -188,6 +216,8 @@ export default function Home() {
           <input
             name="name"
             placeholder="Name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
             className="border border-gray-300 p-3 w-full rounded-md focus:border-black focus:outline-none"
             required
           />
@@ -195,21 +225,32 @@ export default function Home() {
             name="email"
             placeholder="E-Mail"
             type="email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
             className="border border-gray-300 p-3 w-full rounded-md focus:border-black focus:outline-none"
             required
           />
           <textarea
             name="nachricht"
             placeholder="Nachricht"
+            value={form.nachricht}
+            onChange={(e) => setForm({ ...form, nachricht: e.target.value })}
             className="border border-gray-300 p-3 w-full rounded-md h-32 focus:border-black focus:outline-none"
             required
           />
           <button
             type="submit"
-            className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition"
+            disabled={loading}
+            className={`bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition w-full ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
-            Absenden
+            {loading ? 'Wird gesendet...' : 'Absenden'}
           </button>
+
+          {msg && (
+            <p className={`text-center mt-4 ${msg.includes('erfolgreich') ? 'text-green-600' : 'text-red-500'}`}>
+              {msg}
+            </p>
+          )}
         </motion.form>
       </section>
     </main>
