@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import './globals.css';
+import Header from './components/Header';
 
 export const metadata: Metadata = {
   title: 'YTech – Webentwicklung & digitale Lösungen',
@@ -27,36 +28,36 @@ export default function RootLayout({
     <html lang="de">
       <body className="min-h-screen bg-white text-gray-900 antialiased scroll-smooth">
         {/* ----- NAVIGATION ----- */}
-        <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md border-b z-50">
-          <div className="max-w-6xl mx-auto flex items-center justify-between py-4 px-6">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
-              YTech
-            </Link>
-            <nav className="hidden md:flex gap-6 text-gray-700">
-              <Link href="/#home" className="hover:text-black">Home</Link>
-              <Link href="/#leistungen" className="hover:text-black">Leistungen</Link>
-              <Link href="/#projekte" className="hover:text-black">Projekte</Link>
-              <Link href="/#kontakt" className="hover:text-black">Kontakt</Link>
-              <Link href="/impressum" className="hover:text-black">Impressum</Link>
-              <Link href="/datenschutz" className="hover:text-black">Datenschutz</Link>
-            </nav>
-          </div>
-        </header>
-
+        <Header />
         {/* ----- HAUPTINHALT ----- */}
         <main className="pt-20">{children}</main>
 
         {/* ----- FOOTER ----- */}
-        <footer className="mt-16 border-t pt-8 text-sm text-gray-600 text-center">
-          <div className="flex justify-center gap-6 mb-4">
-            <Link href="/#home" className="hover:text-black">Home</Link>
-            <Link href="/#leistungen" className="hover:text-black">Leistungen</Link>
-            <Link href="/#projekte" className="hover:text-black">Projekte</Link>
-            <Link href="/#kontakt" className="hover:text-black">Kontakt</Link>
-            <Link href="/impressum" className="hover:text-black">Impressum</Link>
-            <Link href="/datenschutz" className="hover:text-black">Datenschutz</Link>
+        <footer className="mt-16 border-t pt-8 pb-12 text-sm text-gray-600 text-center">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 px-4 mb-4">
+            <Link href="/#home" className="hover:text-black">
+              Home
+            </Link>
+            <Link href="/#leistungen" className="hover:text-black">
+              Leistungen
+            </Link>
+            <Link href="/#projekte" className="hover:text-black">
+              Projekte
+            </Link>
+            <Link href="/#kontakt" className="hover:text-black">
+              Kontakt
+            </Link>
+            <Link href="/impressum" className="hover:text-black">
+              Impressum
+            </Link>
+            <Link href="/datenschutz" className="hover:text-black">
+              Datenschutz
+            </Link>
           </div>
-          © {new Date().getFullYear()} YTech – Alle Rechte vorbehalten.
+
+          <p className="px-4">
+            © {new Date().getFullYear()} <span className="font-semibold">YTech</span> – Alle Rechte vorbehalten.
+          </p>
         </footer>
 
                 {/* ----- FLOATING CONTACT BUTTONS ----- */}

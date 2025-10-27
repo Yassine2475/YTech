@@ -22,9 +22,12 @@
   body {
     background-color: theme('colors.white');
     color: theme('colors.gray.900');
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+      'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     line-height: 1.6;
+    overflow-x: hidden;
   }
 
   h1 {
@@ -114,17 +117,27 @@
   }
 }
 
+/* -------------------------------
+   ANIMATIONEN
+--------------------------------*/
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); } /* etwas sanfter */
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
 }
 
 @keyframes softGlow {
-  0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.1); }
-  50% { box-shadow: 0 0 20px rgba(255,255,255,0.25); }
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  }
 }
 
-/* einzelne Effekte (falls du sie einzeln brauchst) */
 .animate-pulse-slow {
   animation: pulse 2s infinite ease-in-out;
 }
@@ -134,7 +147,104 @@
 }
 
 .animate-pulse-glow {
-  animation: 
+  animation:
     pulse 2.5s infinite ease-in-out,
     softGlow 3s infinite ease-in-out;
+}
+
+/* ---------------------------
+   📱 Mobile Optimierungen
+--------------------------- */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 8rem; /* Platz für Floating Buttons + Footer */
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+  }
+
+  header > div {
+    padding: 1rem;
+  }
+
+  header nav {
+    display: none; /* Navigation auf Mobil ausblenden */
+  }
+
+  main {
+    padding-top: 5.5rem; /* Platz für Header */
+    padding-inline: 1rem;
+  }
+
+  section {
+    padding-block: 4rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    font-size: 1rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem 10rem; /* Platz für Floating Buttons */
+    font-size: 0.875rem;
+  }
+
+  /* Floating Buttons unten rechts */
+  .floating-buttons {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 60;
+  }
+
+  .floating-buttons a {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1f2937, #111827);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .floating-buttons a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
 }
