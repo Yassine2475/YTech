@@ -14,7 +14,7 @@ export default function Datenschutz() {
         Yassine Fakrouche <br />
         YTech – Webentwicklung & digitale Lösungen <br />
         Musterstraße 12 <br />
-        50667 Köln <br />
+        58095 Hagen <br />
         E-Mail: kontakt@ytech.dev
       </p>
 

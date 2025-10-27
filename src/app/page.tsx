@@ -24,7 +24,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Ich bin <strong>Yassine Fakrouche</strong>, Webentwickler aus Köln.  
+          Ich bin <strong>Yassine Fakrouche</strong>, Webentwickler aus Hagen.  
           Ich entwickle maßgeschneiderte Websites & Webapps mit modernem Tech-Stack,  
           klarer Struktur und einem Auge fürs Design.
         </motion.p>

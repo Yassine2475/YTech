@@ -8,7 +8,7 @@ export default function Impressum() {
         Yassine Fakrouche <br />
         YTech – Webentwicklung & digitale Lösungen <br />
         Musterstraße 12 <br />
-        50667 Köln <br />
+        58095 Hagen <br />
         Deutschland
       </p>
 
